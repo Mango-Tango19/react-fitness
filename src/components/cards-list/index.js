@@ -1,15 +1,27 @@
 import React from 'react'
-//import { useState, useEffect } from 'react'
+import ErrorIndicator from '../error-indicator'
+import Spinner from '../spinner'
+
+import s from './cards-list.module.scss'
 
 import { useCardsList } from './useCardsList'
 
 const CardsList = () => {
-  const dataState = useCardsList()
+  const { cards, error, loading } = useCardsList()
+
   const renderCards = arr => {
     return arr.map(item => <span key={item.alias}>{item.title}</span>)
   }
 
-  return <div>cards{renderCards(dataState)}</div>
+  if (error) {
+    return <ErrorIndicator />
+  }
+
+  if (loading) {
+    return <Spinner />
+  }
+
+  return <div className={s.cardsListWrapper}>cards{renderCards(cards)}</div>
 }
 
 export default CardsList

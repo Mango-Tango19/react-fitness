@@ -1,0 +1,22 @@
+.error {
+  display: flex;
+  width: 80vw;
+  height: 60vh;
+  margin-top: 3rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+
+  &__image {
+    img {
+      max-height: 12rem;
+    }
+  }
+
+  &__text {
+    span {
+      font-size: 2rem;
+    }
+  }
+}
