@@ -1,0 +1,40 @@
+@import '../../scss/variables';
+
+.header {
+  background-color: $blue;
+  height: 6rem;
+  color: aliceblue;
+  font-size: $big;
+
+  &Content {
+    width: $desctop-container;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    align-items: center;
+  }
+
+  &Logo {
+    span:hover {
+      cursor: pointer;
+    }
+  }
+  &Cart {
+    border: 1px solid aliceblue;
+    padding: 8px;
+    border-radius: 5px;
+
+    .cartAmount {
+      margin-right: 8px;
+    }
+
+    .cartText {
+    }
+  }
+
+  &Cart:hover {
+    background-color: $dark-blue;
+    cursor: pointer;
+  }
+}

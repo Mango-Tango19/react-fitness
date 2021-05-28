@@ -1,6 +1,7 @@
 import React from 'react'
 import ErrorIndicator from '../error-indicator'
 import Spinner from '../spinner'
+import Card from '../card'
 
 import s from './cards-list.module.scss'
 
@@ -10,7 +11,7 @@ const CardsList = () => {
   const { cards, error, loading } = useCardsList()
 
   const renderCards = arr => {
-    return arr.map(item => <span key={item.alias}>{item.title}</span>)
+    return arr.map(item => <Card key={item.alias} card={item} />)
   }
 
   if (error) {
