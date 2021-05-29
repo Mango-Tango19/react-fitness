@@ -7,7 +7,6 @@ class ErrorBoundry extends Component {
   }
 
   componentDidCatch() {
-    debugger
     this.setState({ hasError: true })
   }
 
