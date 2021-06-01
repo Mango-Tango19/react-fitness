@@ -1,5 +1,6 @@
 import React from 'react'
 import FilterSelect from '../filterSelect'
+import s from './filters.module.scss'
 
 const Filters = ({ filters }) => {
   let categories = {
@@ -15,19 +16,6 @@ const Filters = ({ filters }) => {
       return getFilters(filter)
     })
   }
-  //   const onlyUnique = (value, index, self) => {
-  //     return self.indexOf(value) === index
-  //   }
-
-  //   const findUnique = arr => {
-  //     let arr1 = []
-  //     arr.forEach(item => {
-  //       debugger
-  //       arr1.push(item.filter(onlyUnique))
-  //     })
-  //     debugger
-  //     return arr1
-  //   }
 
   const getFilters = arr => {
     arr.forEach(item => {
@@ -49,11 +37,8 @@ const Filters = ({ filters }) => {
   }
 
   getCategories()
-  //const unique = findUnique(Object.values(categories))
 
-  //console.log(Object.keys(categories))
-  let keys = Object.keys(categories)
-  //console.log(categories[keys[1]])
+  const keys = Object.keys(categories)
 
   let selectsArr = []
 
@@ -61,7 +46,7 @@ const Filters = ({ filters }) => {
     selectsArr.push(<FilterSelect name={keys[i]} options={categories[keys[i]]} key={keys[i]}></FilterSelect>)
   }
 
-  return <div>{selectsArr}</div>
+  return <div className={s.filtersWrapper}>{selectsArr}</div>
 }
 
 export default Filters
