@@ -1,3 +1,13 @@
+@import '../../scss/variables';
+
 .cardsListWrapper {
   height: 100vh;
+}
+
+.cardDesk {
+  width: $desctop-container;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 21.7em);
+  grid-gap: 1.25em;
 }

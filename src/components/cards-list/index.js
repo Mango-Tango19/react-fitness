@@ -32,7 +32,7 @@ const CardsList = () => {
     <div className={s.cardsListWrapper}>
       <Header />
       <Filters filters={filters} />
-      {renderCards(cards)}
+      <div className={s.cardDesk}>{renderCards(cards)}</div>
     </div>
   )
 }

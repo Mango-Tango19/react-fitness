@@ -1,2 +1,35 @@
-.cardWrapper {
+@import '../../scss/variables';
+
+.card {
+  -webkit-box-shadow: 0px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 0px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  box-shadow: 0px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  &Image {
+    width: 100%;
+  }
+
+  &Content {
+    padding: 1.25em;
+  }
+
+  &Title {
+    font-weight: $bold;
+  }
+
+  &Description {
+  }
+
+  &Tags {
+    padding: 0.5em;
+  }
+
+  &Tag {
+    padding: 0.2em;
+    background-color: $light-blue;
+    display: inline-block;
+    border-radius: 5px;
+    margin-right: 0.5em;
+    margin-bottom: 0.5em;
+    color: $grey;
+  }
 }
