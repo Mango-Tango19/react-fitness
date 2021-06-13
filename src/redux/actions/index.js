@@ -1,20 +1,7 @@
-const cardsRequested = () => {
+const filterChaged = filters => {
   return {
-    type: 'CARDS_REQUESTED',
+    type: 'FILTER_CHANGED',
+    payload: filters,
   }
 }
-
-const cardsError = () => {
-  return {
-    type: 'CARDS_ERROR',
-  }
-}
-
-const cardsLoaded = newCards => {
-  return {
-    type: 'CARDS_LOADED',
-    payload: newCards,
-  }
-}
-
-export { cardsLoaded, cardsError, cardsRequested }
+export { filterChaged }

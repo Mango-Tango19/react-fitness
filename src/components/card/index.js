@@ -15,9 +15,6 @@ const Card = ({ card }) => {
     })
   }
 
-  // const cutDescription = (descriptionStr) => {
-  //   return descriptionStr //не более трёх строк!!
-  // }
   return (
     <div className={s.card}>
       <img className={s.cardImage} src={image} alt={title}></img>

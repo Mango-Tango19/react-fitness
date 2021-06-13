@@ -11,7 +11,11 @@ const FilterSelect = ({ name, options }) => {
 
     return unique.map(item => {
       const key = Math.random() * 10
-      return <option key={key}>{item}</option>
+      return (
+        <option key={key} value={item}>
+          {item}
+        </option>
+      )
     })
   }
 
@@ -32,9 +36,13 @@ const FilterSelect = ({ name, options }) => {
     }
   }
 
+  const handleChange = e => {
+    console.log(e.target.value)
+  }
+
   return (
-    <select className={s.select}>
-      <option>{translateName(name)}</option>
+    <select className={s.select} onChange={e => handleChange(e)}>
+      <option value={translateName(name)}>{translateName(name)}</option>
       {renderOptions(options)}
     </select>
   )
