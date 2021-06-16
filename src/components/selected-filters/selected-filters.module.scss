@@ -1,0 +1,21 @@
+@import '../../scss/variables';
+
+.selectedFiltersContainer {
+  display: flex;
+  width: 75%;
+  margin: 1em auto;
+}
+
+.selectedFilter {
+  padding: 0.2em;
+  background-color: $light-grey;
+  display: inline-block;
+  border-radius: 5px;
+  margin-right: 0.5em;
+  margin-bottom: 0.5em;
+  color: $grey;
+}
+
+.resetBtn {
+  background: turquoise;
+}

@@ -5,6 +5,7 @@ import Spinner from '../spinner'
 import Card from '../card'
 import Header from '../header'
 import Filters from '../filters'
+import SelectedFilters from '../selected-filters'
 import { filterChanged } from '../../redux/actions'
 
 import s from './cards-list.module.scss'
@@ -22,8 +23,6 @@ const CardsList = ({ onfilterChanged, filters }) => {
     return cardsArr.map(item => <Card key={item.alias} card={item} filters={filters} />)
   }
 
-  const cardsOnPage = renderCards(cards)
-
   if (error) {
     return <ErrorIndicator />
   }
@@ -36,7 +35,8 @@ const CardsList = ({ onfilterChanged, filters }) => {
     <div className={s.cardsListWrapper}>
       <Header />
       <Filters filters={filtersOnPage} onfilterChanged={onfilterChanged} />
-      <div className={s.cardDesk}>{cardsOnPage}</div>
+      <SelectedFilters filters={filters} />
+      <div className={s.cardDesk}>{renderCards(cards)}</div>
     </div>
   )
 }
