@@ -1,7 +1,7 @@
-const filterChaged = filters => {
+const filterChanged = filter => {
   return {
     type: 'FILTER_CHANGED',
-    payload: filters,
+    payload: filter,
   }
 }
-export { filterChaged }
+export { filterChanged }

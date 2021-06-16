@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import s from './filter-select.module.scss'
 
-const FilterSelect = ({ name, options }) => {
+const FilterSelect = ({ name, options, onfilterChanged }) => {
   const onlyUnique = (value, index, self) => {
     return self.indexOf(value) === index
   }
@@ -36,15 +36,13 @@ const FilterSelect = ({ name, options }) => {
     }
   }
 
-  const handleChange = e => {
-    console.log(e.target.value)
-  }
-
   return (
-    <select className={s.select} onChange={e => handleChange(e)}>
-      <option value={translateName(name)}>{translateName(name)}</option>
-      {renderOptions(options)}
-    </select>
+    <Fragment>
+      <select className={s.select} onChange={e => onfilterChanged(e.target.value)}>
+        <option value={translateName(name)}>{translateName(name)}</option>
+        {renderOptions(options)}
+      </select>
+    </Fragment>
   )
 }
 

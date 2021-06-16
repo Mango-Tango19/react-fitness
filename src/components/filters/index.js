@@ -2,7 +2,7 @@ import React from 'react'
 import FilterSelect from '../filterSelect'
 import s from './filters.module.scss'
 
-const Filters = ({ filters }) => {
+const Filters = ({ filters, onfilterChanged }) => {
   let categories = {
     amount: [],
     duration: [],
@@ -43,7 +43,9 @@ const Filters = ({ filters }) => {
   let selectsArr = []
 
   for (let i = 0; i < keys.length; i++) {
-    selectsArr.push(<FilterSelect name={keys[i]} options={categories[keys[i]]} key={keys[i]}></FilterSelect>)
+    selectsArr.push(
+      <FilterSelect name={keys[i]} options={categories[keys[i]]} key={keys[i]} onfilterChanged={onfilterChanged} />
+    )
   }
 
   return <div className={s.filtersWrapper}>{selectsArr}</div>
