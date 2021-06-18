@@ -10,8 +10,8 @@ const SelectedFilters = ({ filters }) => {
 
   return (
     <div className={s.selectedFiltersContainer}>
-      {selectedFilters}
       <button className={s.resetBtn}>Сбросить</button>
+      {selectedFilters}
     </div>
   )
 }
