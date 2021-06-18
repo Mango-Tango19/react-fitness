@@ -6,13 +6,13 @@ import Card from '../card'
 import Header from '../header'
 import Filters from '../filters'
 import SelectedFilters from '../selected-filters'
-import { filterChanged } from '../../redux/actions'
+import { filterChanged, filterReset } from '../../redux/actions'
 
 import s from './cards-list.module.scss'
 
 import { useCardsList } from './useCardsList'
 
-const CardsList = ({ onfilterChanged, filters }) => {
+const CardsList = ({ onFilterChanged, onFilterReset, filters }) => {
   const { cards, error, loading } = useCardsList()
 
   const filtersOnPage = cards.map(item => {
@@ -34,8 +34,8 @@ const CardsList = ({ onfilterChanged, filters }) => {
   return (
     <div className={s.cardsListWrapper}>
       <Header />
-      <Filters filters={filtersOnPage} onfilterChanged={onfilterChanged} />
-      <SelectedFilters filters={filters} />
+      <Filters filters={filtersOnPage} onFilterChanged={onFilterChanged} />
+      <SelectedFilters filters={filters} onFilterReset={onFilterReset} />
       <div className={s.cardDesk}>{renderCards(cards)}</div>
     </div>
   )
@@ -49,7 +49,8 @@ const mapStateToProps = ({ filters }) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onfilterChanged: selectVal => dispatch(filterChanged(selectVal)),
+    onFilterChanged: selectVal => dispatch(filterChanged(selectVal)),
+    onFilterReset: () => dispatch(filterReset()),
   }
 }
 

@@ -4,4 +4,10 @@ const filterChanged = filter => {
     payload: filter,
   }
 }
-export { filterChanged }
+
+const filterReset = () => {
+  return {
+    type: 'FILTER_RESET',
+  }
+}
+export { filterChanged, filterReset }

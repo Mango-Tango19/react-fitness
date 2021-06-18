@@ -10,6 +10,9 @@ const reducer = (state = initialState, action) => {
         filters: [...state.filters, action.payload],
       }
 
+    case 'FILTER_RESET':
+      return initialState
+
     default:
       return state
   }
