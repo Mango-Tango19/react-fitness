@@ -1,5 +1,7 @@
 import React from 'react'
+//import SingleCard from '../single-card'
 import { Link } from 'react-router-dom'
+
 import s from './card.module.scss'
 
 const Card = ({ card, filters }) => {
@@ -21,7 +23,7 @@ const Card = ({ card, filters }) => {
   }
 
   const cardElement = (
-    <Link to={`/${alias}`}>
+    <Link to={`/${alias}`} onClick={() => console.log(alias)}>
       <div className={s.card}>
         <img className={s.cardImage} src={image} alt={title}></img>
         <div className={s.cardContent}>

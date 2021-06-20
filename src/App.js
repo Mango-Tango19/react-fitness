@@ -1,6 +1,7 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 //import Modal from './components/modal'
+import SingleCard from './components/single-card'
 
 import HomePage from './pages/home-page'
 import CartPage from './pages/cart-page'
@@ -13,6 +14,13 @@ const App = () => {
       <Switch>
         <Route path="/" component={HomePage} exact />
         <Route path="/cart" component={CartPage} />
+        <Route
+          path="/:alias"
+          render={({ match }) => {
+            const { alias } = match.params
+            return <SingleCard cardAlias={alias} />
+          }}
+        />
       </Switch>
       {/* <Modal /> */}
     </div>
