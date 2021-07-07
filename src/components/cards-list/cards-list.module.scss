@@ -8,6 +8,6 @@
   width: $desctop-container;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(3, 21.7em);
+  grid-template-columns: repeat(3, 1fr);
   grid-gap: 1.25em;
 }

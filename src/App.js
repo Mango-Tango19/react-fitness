@@ -1,12 +1,13 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 //import Modal from './components/modal'
-import SingleCard from './components/single-card'
+
 
 import HomePage from './pages/home-page'
 import CartPage from './pages/cart-page'
 
 import s from './App.module.scss'
+import SingleCardContainer from "./components/single-card";
 
 const App = () => {
   return (
@@ -18,7 +19,7 @@ const App = () => {
           path="/:alias"
           render={({ match }) => {
             const { alias } = match.params
-            return <SingleCard cardAlias={alias} />
+            return <SingleCardContainer cardAlias={alias} />
           }}
         />
       </Switch>

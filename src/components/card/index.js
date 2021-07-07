@@ -23,9 +23,9 @@ const Card = ({ card, filters }) => {
   }
 
   const cardElement = (
-    <Link to={`/${alias}`} onClick={() => console.log(alias)}>
+    <Link to={`/${alias}`}>
       <div className={s.card}>
-        <img className={s.cardImage} src={image} alt={title}></img>
+        <img className={s.cardImage} src={image} alt={title} />
         <div className={s.cardContent}>
           <p className={s.cardTitle}>{title}</p>
           <span className={s.cardDescription}>{description}</span>
