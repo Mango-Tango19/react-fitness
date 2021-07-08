@@ -1,44 +1,100 @@
 import React, {Component} from 'react'
+
+import Button from "../button";
+import s from './single-card.module.scss'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import ErrorIndicator from "../error-indicator";
+import Spinner from "../spinner";
+import { cardRequested, cardSuccess, cardError } from '../../redux/actions'
 import FitnessService from "../../service";
 
-const service = new FitnessService()
+
 
 class SingleCardContainer extends  Component {
 
-  state = {
-    card: ''
-  }
+    service = new FitnessService()
 
-  componentDidMount() {
-    debugger
-    service.getSingleCard(this.props.cardAlias)
-        .then(data => this.setState({card: data}))
-  }
+    // getCard = () => {
+    //     this.service.getSingleCard(this.props.cardAlias)
+    // }
+
+    componentDidMount () {
+        const {onCardRequested, onCardSuccess, onCardError} = this.props
+        onCardRequested()
+        this.service.getSingleCard(this.props.cardAlias)
+            .then(data => onCardSuccess(data))
+            .catch(() => onCardError())
+    }
+
+
 
   render() {
-    return <SingleCard card={this.state.card}/>
+        const {card, error, loading } = this.props
+        const singleCardElement = card ? <SingleCard card={card}/> : null
+
+      const errorMessage = error ? <ErrorIndicator /> : null
+      const loadingView = loading ? <Spinner /> : null
+
+    return  (
+        <div className={s.singleCardContainer}>
+            <Link to="/">
+            <Button title={"Назад"}/>
+            </Link>
+            {singleCardElement}
+            {errorMessage}
+            {loadingView}
+        </div>
+    )
   }
 }
 
 
 const SingleCard = ({ card }) => {
-    debugger
+
     const [cardInfo] = card
 
     const {price, image, description, title} = cardInfo
-    return (<div className="card mb-3">
-            <img src={image} className="card-img-top" alt="..."/>
-            <div className="card-body">
-                <h5 className="card-title">{title}</h5>
-                <p className="card-text">{description}</p>
-                <p className="card-text">{price}</p>
-            </div>
+
+    // const cartBtn = <Link to="/cart">
+    //                     <Button title={"Посмотреть корзину"}/>
+    //                  </Link>
+
+
+    return (
+        <div className={s.singleCardWrapper}>
+                <img src={image}  alt={title} className={s.cardImage}/>
+                    <h3>{title}</h3>
+                    <p>{description}</p>
+                    <p>Цена: {price} руб/месяц</p>
+            <Button title={"Добавить в корзину"}/>
         </div>
     )
 
 }
 
-export default SingleCardContainer
+const mapStateToProps = ({error, loading, card}) => {
+    return {
+        error,
+        loading,
+        card
+    }
+}
+
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onCardRequested: () => dispatch(cardRequested()),
+        onCardSuccess: (card) => dispatch( cardSuccess(card)),
+        onCardError: () => dispatch(cardError())
+    }
+
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(SingleCardContainer)
+
+
 
 
 

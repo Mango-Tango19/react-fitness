@@ -1,0 +1,23 @@
+@import '../../scss/variables';
+
+.singleCardContainer{
+  margin: 5em auto 0;
+  display: flex;
+  width: $desctop-container;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.cardImage {
+  height: 15em;
+}
+
+.singleCardWrapper {
+  -webkit-box-shadow: 0px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 0px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  box-shadow: 0px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  padding: 2em;
+}
+
+

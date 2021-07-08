@@ -2,6 +2,7 @@ import React from 'react'
 //import SingleCard from '../single-card'
 import { Link } from 'react-router-dom'
 
+
 import s from './card.module.scss'
 
 const Card = ({ card, filters }) => {
@@ -22,6 +23,7 @@ const Card = ({ card, filters }) => {
     })
   }
 
+
   const cardElement = (
     <Link to={`/${alias}`}>
       <div className={s.card}>
@@ -34,14 +36,22 @@ const Card = ({ card, filters }) => {
       </div>
     </Link>
   )
+
+
   //if no filters selected, return cardElement on page
-  if (filters.length === 0) {
-    return cardElement
-  } //if filter selected, return cardElement, that have that filters
-  if (filters.length > 0) {
-    const cardElementFilters = finedFilter()
-    return cardElementFilters.length > 0 ? cardElement : null
-  }
+  const cardOnPage =  filters.length === 0 ? cardElement : null
+
+   //if filter selected, return cardElement, that have that filters
+  const cardElementFilters = finedFilter()
+  const cardWithFilters = cardElementFilters.length > 0 ? cardElement : null
+
+  return (
+      <>
+        {cardOnPage}
+        {cardWithFilters}
+      </>
+  )
 }
+
 
 export default Card
