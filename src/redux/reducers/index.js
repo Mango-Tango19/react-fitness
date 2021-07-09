@@ -3,6 +3,8 @@ const initialState = {
   loading:false,
   error: false,
   cartItems: [],
+  totalAmount: 0,
+  totalPrice: 0,
   card: null
 }
 
@@ -25,6 +27,8 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         cartItems: [...state.cartItems, action.payload],
+        totalAmount: state.totalAmount + 1,
+        totalPrice: state.totalPrice + action.payload.price
       }
     }
     case 'CARD_REQUEST':
@@ -48,6 +52,18 @@ const reducer = (state = initialState, action) => {
         ...state,
         loading:false,
         error: true,
+      }
+
+    case 'DELETE_ITEM_FROM_CART':
+      const itemIndex = state.cartItems.findIndex(({alias}) => alias === action.payload.alias);
+      return {
+        ...state,
+        cartItems: [
+          ...state.cartItems.slice(0, itemIndex),
+          ...state.cartItems.slice(itemIndex + 1)
+        ],
+        totalAmount: state.totalAmount - 1,
+        totalPrice: state.totalPrice - action.payload.price
       }
 
 

@@ -1,7 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { connect } from "react-redux";
 import s from './header.module.scss'
-const Header = () => {
+const Header = ({totalAmount}) => {
+
   return (
     <div className={s.header}>
       <div className={s.headerContent}>
@@ -12,7 +14,7 @@ const Header = () => {
         </Link>
         <div className={s.headerCart}>
           <Link to="/cart">
-            <span className={s.cartAmount}>5</span>
+            <span className={s.cartAmount}>{totalAmount}</span>
             <i className="fal fa-shopping-cart"></i>
             <span className={s.cartText}>Корзина</span>
           </Link>
@@ -22,4 +24,14 @@ const Header = () => {
   )
 }
 
-export default Header
+const mapStateToProps = ({totalAmount}) => {
+  return {
+    totalAmount
+  }
+}
+
+const mapDispatchToProps = () => {
+  return {}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header)

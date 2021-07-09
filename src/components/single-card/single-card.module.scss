@@ -20,4 +20,26 @@
   padding: 2em;
 }
 
+.btnAdd {
+  background-color: darkseagreen;
+  color: white;
+  cursor: pointer;
+  padding: 1em;
+  border: none;
+  border-radius: 2em;
+  font-size: large;
+  font-weight: bold;
+}
+
+.btnAdd:hover {
+  background-color: #548754;
+}
+
+.cartLink {
+  font-size: 1.5em;
+  color: #548754;
+padding-bottom: .5em;
+  border-bottom: solid 1px #548754;
+  text-align: center;
+}
 

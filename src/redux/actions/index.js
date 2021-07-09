@@ -11,7 +11,7 @@ const filterReset = () => {
   }
 }
 
-const onAddToCart = (item) => {
+const addToCart = (item) => {
   return {
     type: 'ADD_TO_CART',
     payload: item
@@ -39,6 +39,14 @@ const cardError = () => {
   }
 }
 
+const deleteItemFromCart = (alias) => {
+  return {
+    type: 'DELETE_ITEM_FROM_CART',
+    payload: alias
+  }
+
+}
 
 
-export { filterChanged, filterReset, onAddToCart, cardRequested, cardSuccess, cardError }
+
+export { filterChanged, filterReset, addToCart, cardRequested, cardSuccess, cardError, deleteItemFromCart }

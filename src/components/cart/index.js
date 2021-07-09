@@ -1,51 +1,56 @@
 import React from 'react'
-//import s from './cart.module.scss'
+import s from './cart.module.scss'
+import { connect } from "react-redux";
+import { deleteItemFromCart } from '../../redux/actions'
 
-// const Cart = ({ items, total, onDelete, onIncrease, onDecrease }) => {
-const Cart = () => {
-  //   const renderRow = (item, idx) => {
-  //     const { id, title, count, total } = item
-  //     return (
-  //       <tr key={id}>
-  //         <td>{idx + 1}</td>
-  //         <td>{title}</td>
-  //         <td>{count}</td>
-  //         <td>${total}</td>
-  //         <td>
-  //           <button onClick={() => onDelete(id)} className={s.btnDelete}>
-  //             <i className="far fa-trash-alt"></i>
-  //           </button>
-  //           <button onClick={() => onIncrease(id)} className={s.btnIncrease}>
-  //             <i className="fa fa-plus-circle" />
-  //           </button>
-  //           <button onClick={() => onDecrease(id)} className={s.btnDecrease}>
-  //             <i className="fa fa-minus-circle" />
-  //           </button>
-  //         </td>
-  //       </tr>
-  //     )
-  //   }
+const Cart = ({ cartItems, totalPrice, onDelete }) => {
+    const renderRow = (item, idx) => {
+      const { alias, title, price } = item
+      return (
+        <tr key={alias}>
+          <td>{idx + 1}</td>
+          <td>{title}</td>
+          <td>{price}</td>
+          <td>
+            <button onClick={() => onDelete(item)} className={s.btnDelete}>
+              <i className="far fa-trash-alt"></i>
+            </button>
+          </td>
+        </tr>
+      )
+    }
 
-  //   return (
-  //     <div className={s.cartWrapper}>
-  //       <h2>Увас в корзине</h2>
-  //       <table className={s.table}>
-  //         <thead>
-  //           <tr>
-  //             <th>#</th>
-  //             <th>Товар</th>
-  //             <th>Количество</th>
-  //             <th>Цена</th>
-  //             <th>Действия</th>
-  //           </tr>
-  //         </thead>
-  //         <tbody>{items.map(renderRow)}</tbody>
-  //       </table>
-  //       <div className={s.total}>Total: ${total}</div>
-  //     </div>
-  //   )
-  // }
-  return <span>Cart</span>
+    return (
+      <div className={s.cartWrapper}>
+        <h2>У вас в корзине</h2>
+        <table className={s.table} border="1">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Карта</th>
+              <th>Цена</th>
+              <th>Удалить</th>
+            </tr>
+          </thead>
+          <tbody>{cartItems.map(renderRow)}</tbody>
+        </table>
+        <div className={s.total}>Сумма покупки: <strong>{totalPrice}  </strong>рублей</div>
+      </div>
+    )
+
+
 }
 
-export default Cart
+const mapStateToProps = ({cartItems, totalPrice}) => {
+  return {cartItems, totalPrice}
+}
+
+const mapDispatchToProps = (dispatch) =>  {
+    return {
+        onDelete: (item) => dispatch(deleteItemFromCart(item))
+    }
+
+
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart)

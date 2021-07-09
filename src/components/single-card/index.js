@@ -1,12 +1,11 @@
-import React, {Component} from 'react'
+import React, {Component, useState} from 'react'
 
-import Button from "../button";
 import s from './single-card.module.scss'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import ErrorIndicator from "../error-indicator";
 import Spinner from "../spinner";
-import { cardRequested, cardSuccess, cardError } from '../../redux/actions'
+import { cardRequested, cardSuccess, cardError, addToCart } from '../../redux/actions'
 import FitnessService from "../../service";
 
 
@@ -14,10 +13,6 @@ import FitnessService from "../../service";
 class SingleCardContainer extends  Component {
 
     service = new FitnessService()
-
-    // getCard = () => {
-    //     this.service.getSingleCard(this.props.cardAlias)
-    // }
 
     componentDidMount () {
         const {onCardRequested, onCardSuccess, onCardError} = this.props
@@ -30,36 +25,46 @@ class SingleCardContainer extends  Component {
 
 
   render() {
-        const {card, error, loading } = this.props
-        const singleCardElement = card ? <SingleCard card={card}/> : null
-
+    const {card, error, loading, onAddToCart } = this.props
+    const loadingView = loading ? <Spinner /> : null
+    const singleCardElement = card ? <SingleCard card={card} onAddToCart={onAddToCart}/> : loadingView
       const errorMessage = error ? <ErrorIndicator /> : null
-      const loadingView = loading ? <Spinner /> : null
+
 
     return  (
         <div className={s.singleCardContainer}>
             <Link to="/">
-            <Button title={"Назад"}/>
+           <p>Назад</p>
             </Link>
             {singleCardElement}
             {errorMessage}
-            {loadingView}
         </div>
     )
   }
 }
 
 
-const SingleCard = ({ card }) => {
+const SingleCard = ({ card, onAddToCart }) => {
+
+    const [cartBtnVisible, setCartBtnVisible] = useState(false)
+
+    const [addBtnVisible, setAddBtnVisible] = useState(true)
 
     const [cardInfo] = card
 
     const {price, image, description, title} = cardInfo
 
-    // const cartBtn = <Link to="/cart">
-    //                     <Button title={"Посмотреть корзину"}/>
-    //                  </Link>
+    const cartBtn = <Link to="/cart">
+                        <p className={s.cartLink}>Посмотреть корзину</p>
+                     </Link>
 
+    const addBtn = <button className={s.btnAdd} onClick={() => handleClick(cardInfo) }>Добавить в корзину</button>
+
+    const handleClick = (cardInfo) => {
+        onAddToCart(cardInfo)
+        setCartBtnVisible(true)
+        setAddBtnVisible(false)
+    }
 
     return (
         <div className={s.singleCardWrapper}>
@@ -67,7 +72,8 @@ const SingleCard = ({ card }) => {
                     <h3>{title}</h3>
                     <p>{description}</p>
                     <p>Цена: {price} руб/месяц</p>
-            <Button title={"Добавить в корзину"}/>
+            {addBtnVisible ? addBtn : null}
+            {cartBtnVisible ? cartBtn : null}
         </div>
     )
 
@@ -86,7 +92,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         onCardRequested: () => dispatch(cardRequested()),
         onCardSuccess: (card) => dispatch( cardSuccess(card)),
-        onCardError: () => dispatch(cardError())
+        onCardError: () => dispatch(cardError()),
+        onAddToCart: (card) => dispatch(addToCart(card))
     }
 
 }
