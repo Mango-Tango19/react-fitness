@@ -21,7 +21,7 @@
 }
 
 .btnAdd {
-  background-color: #4FC3A1;
+  background-color: $turquoise;
   color: white;
   cursor: pointer;
   padding: 1em;
@@ -32,14 +32,14 @@
 }
 
 .btnAdd:hover {
-  background-color: #324960;
+  background-color: $dark-grey;
 }
 
 .cartLink {
-  font-size: 1.5em;
-  color: #4FC3A1;
+  font-size: $regular;
+  color: $turquoise;
   padding-bottom: .5em;
-  border-bottom: solid 1px #4FC3A1;
+  border-bottom: solid 1px $turquoise;
   text-align: center;
 }
 

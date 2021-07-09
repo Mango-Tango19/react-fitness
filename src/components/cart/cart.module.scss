@@ -28,12 +28,12 @@ td {
 
 thead th {
  color: #ffffff;
- background: #4FC3A1;
+ background: $turquoise;
 }
 
 thead th:nth-child(odd) {
  color: #ffffff;
- background: #324960;
+ background: $dark-grey;
 }
 
 tr:nth-child(even) {
