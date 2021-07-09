@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { connect } from "react-redux";
 import s from './header.module.scss'
 const Header = ({totalAmount}) => {
-
+  
   return (
     <div className={s.header}>
       <div className={s.headerContent}>
