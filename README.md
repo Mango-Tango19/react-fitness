@@ -37,5 +37,10 @@ React Router
 Redux
 ```
 
+### Планы по улучшению
+
+1. Сдалать вёрстку адаптивной
+2. Эмулировать регистрацию клиента и покупку товара
+
 
 This project was created with [Create React App](https://github.com/facebook/create-react-app).
